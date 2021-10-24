@@ -1,0 +1,27 @@
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center align-items-start mb-4">
+  <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- notice position-absolute on the brand which allows it to center-->
+  <span class="navbar-brand position-absolute">System Monitoring Dashboard</span>
+  <div class="navbar-collapse collapse" id="navbar">
+      <ul class="navbar-nav">
+          <li class="nav-item">
+            <span class="nav-link text-white"><i class="fa fa-server"></i> System: {{systemHealth?.status}} </span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-white"><i class="fa fa-database"></i> DB:  {{systemHealth?.components?.db?.details?.database}} - {{systemHealth?.components?.db?.status}} </span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-white"><i class="fa fa-hdd-o"></i> Disk Space: {{systemHealth?.components?.diskSpace?.details?.free}} / {{systemHealth?.components?.diskSpace?.details?.total}} </span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-white" [ngClass] = "{'text-danger': testMeasurement(systemCpu)}"><i class="fa fa-microchip"></i> Processors: {{ processors }} </span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-white"><i class="fa fa-clock-o"></i> Up Time: {{timeStamp}} </span>
+          </li>
+      </ul>
+  </div>
+</nav>

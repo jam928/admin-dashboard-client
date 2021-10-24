@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <i class="fa fa-check-circle-o f-left" style="margin-right: 5px;"></i>&nbsp;
+                    <h6 class="m-b-20" style="margin-top: -20px;">200 Response</h6>
+                    <h2 class="text-right"><span>{{http200Traces?.length}}</span></h2>
+                    <p class="m-b-0">Updated: <span class="f-right">{{http200Traces[0]?.timestamp ? (http200Traces[0]?.timestamp | date: 'short') : "N/A"}}</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-blue order-card">
+              <div class="card-block">
+                <i class="fa fa-ban f-left" style="margin-right: 5px;"></i>&nbsp;
+                <h6 class="m-b-20" style="margin-top: -20px;">404 Response</h6>
+                <h2 class="text-right"><span>{{http404Traces?.length}}</span></h2>
+                <p class="m-b-0">Updated: <span class="f-right">{{http404Traces[0]?.timestamp ?  (http404Traces[0]?.timestamp | date: 'short') : "N/A"}}</span></p>
+              </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-yellow order-card">
+              <div class="card-block">
+                <i class="fa fa-exclamation-circle f-left" style="margin-right: 5px;"></i>&nbsp;
+                <h6 class="m-b-20" style="margin-top: -20px;">400 Response</h6>
+                <h2 class="text-right"><span>{{http400Traces?.length}}</span></h2>
+                <p class="m-b-0">Updated: <span class="f-right">{{http400Traces[0]?.timestamp ? (http400Traces[0]?.timestamp | date: 'short') : "N/A"}}</span></p>
+              </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-pink order-card">
+              <div class="card-block">
+                <i class="fa fa-bug f-left" style="margin-right: 5px;"></i>&nbsp;
+                <h6 class="m-b-20" style="margin-top: -20px;">500 Response</h6>
+                <h2 class="text-right"><span>{{http500Traces?.length}}</span></h2>
+                <p class="m-b-0">Updated: <span class="f-right">{{http500Traces[0]?.timestamp ? (http500Traces[0]?.timestamp | date: 'short') : "N/A"}}</span></p>
+              </div>
+            </div>
+        </div>
+        
+        
+	  
+        <div class="col-md-6">
+          <div class="text-center">
+            Http Responses
+          </div>
+          <canvas baseChart 
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [type]="'bar'">
+        </canvas>
+      </div>
+  
+      <div class = "col-md-6">
+        <div class="text-center">
+          Http Responses
+        </div>
+          <canvas baseChart 
+        [datasets]="pieChartData"
+        [labels]="pieChartLabels"
+        [options]="pieChartOptions"
+        [legend]="pieChartLegend"
+        [type]="'pie'">
+          </canvas>
+        </div>
+      
+      </div>
+    <div class = "row">
+      
+    </div>
+
+    <hr>
+
+    <app-http-trace-table [traceList]="traceList"></app-http-trace-table>
+    <!-- Button trigger modal -->
+    <button hidden="true" type="button" id="trace-modal" class="btn btn-primary" data-toggle="modal" data-target="#trace-info-modal"></button>
+</div>
+
